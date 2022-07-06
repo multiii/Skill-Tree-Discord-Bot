@@ -30,12 +30,12 @@ exports.locationConfirmation = async function(message, scope, locationInfo, call
 
   //Error message
   if (locationInfo === null) {
-    scope
-      .send("```Invalid timezone: Please make sure you're using the correct format \n" +
-      settings.prefix + exports.help.usage + "```")
-      .then(msg => {
-        setTimeout(() => msg.delete(), 10000);
-      });
+    await scope.sendError({
+      title: "Invalid timezone!",
+      description: `Please make sure you're using the correct format\n\`${settings.prefix}${exports.help.usage}\``,
+    }).then(msg => {
+      setTimeout(() => msg.delete(), 10000);
+    });
     return;
   }
   //Calculate local time
