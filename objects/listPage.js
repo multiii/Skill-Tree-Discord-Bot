@@ -1,5 +1,5 @@
 const Swipeable = require("./swipeable");
-const {MessageEmbed} = require("discord.js");
+const { emotes, success } = require("../modules/resources.js");
 
 /**
  * ListPage object to display a list of items all at once
@@ -24,12 +24,13 @@ class ListPage extends Swipeable {
    * @returns data - [embed, files]
    */
   async update() {
-    const embed = new MessageEmbed();
-    await embed.setColor("#1071E5");
-    embed.setTitle(this.title);
-    embed.setDescription(this.list.map(v => v.toLine()).join("\n"));
+    const title = this.title;
+    let description = "";
 
-    const embeds = [embed];
+    for (const [index, skill] of this.list.entries())
+      description += `${emotes.dotE} \`${index}.\` → ${skill.toLine()}\n`;
+
+    const embeds = [success.embed({ title: title, description: description })];
     const files = [];
     return [embeds, files];
   }

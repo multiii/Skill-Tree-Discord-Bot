@@ -9,7 +9,7 @@ const { replies } = require("../../config.js");
  * Sends a swipeable list of all the user's available skills
  */
 exports.run = async (client, interaction) => {
-  await interaction.deferReply({ephemeral: interaction.settings.hidden});
+  await interaction.deferReply({ ephemeral: interaction.settings.hidden });
 
   //Validate user exists
   const userID = await authUser(interaction.user.id);
@@ -34,8 +34,9 @@ function showCompleted(client, interaction, userID, completed) {
     const list = splitToN(completed, 10);
     const listPages = [];
     for (let i = 0; i < list.length; i++) {
-      listPages.push(new ListPage("COMPLETED",list[i]));
+      listPages.push(new ListPage("Your completed skills:", list[i]));
     }
+
     createLargeMultiActionSwipePanel(client, interaction, listPages,
       listPages.map(page => {
         return page.list.map(obj => {

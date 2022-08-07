@@ -126,7 +126,8 @@ module.exports = {
   emotes: {
     successE: successE,
     errorE: errorE,
-    warnE: warnE
+    warnE: warnE,
+    dotE: "<:dot:1005788818886099044>"
   },
   success: new Resource({ color: successC, emote: successE }),
   error: new Resource({ color: errorC, emote: errorE }),
